@@ -71,6 +71,7 @@ public class Punter {
 		    throw new IllegalArgumentException("Placing bet would go below limit.");
 		}
         if (state.equals(State.NOT_BETTING)) {
+        	balance = balance - bet;
             currentBet = bet;
             state = State.BETTING;
         }
@@ -82,7 +83,7 @@ public class Punter {
         if (state.equals(State.BETTING)) {
             balance = balance + currentBet;
             currentBet = 0;
-            state = State.NOT_BETTING;
+            state = State.RECEIVING_WINNINGS;
         }
     }
 
@@ -100,7 +101,6 @@ public class Punter {
 	
     public void loseBet() {
         if (state.equals(State.BETTING)) {
-            balance = balance - currentBet;
             currentBet = 0;
             state = State.NOT_BETTING;
         }
