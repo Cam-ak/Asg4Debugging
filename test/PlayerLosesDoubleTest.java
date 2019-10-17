@@ -3,25 +3,14 @@ import java.util.List;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.*;
 
-
-@ExtendWith(MockitoExtension.class)
 class PlayerLosesDoubleTest {
 
-	
-	
-	@InjectMocks private InteractiveGame ig;
-	
-	
-	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 
@@ -32,9 +21,14 @@ class PlayerLosesDoubleTest {
 	}
 
 	@Test
-	void testPlaceBet() {
+	void testPlayerLosesDoubleBug() {
 		
 		//arrange
+		List<Die> dice = new ArrayList<Die>();
+		dice.add(new Die());
+		dice.add(new Die());
+		dice.add(new Die());
+		Face selection = Face.FISH;
 		String punterName = "John";
 		int punterBalance = 100;
 		int punterLimit = 10;
@@ -44,8 +38,20 @@ class PlayerLosesDoubleTest {
 		//execute
 		punter.placeBet(punterBet);
 		
+		int matches = 0;
+		
+		int winnings = matches * punterBet;
+
+		if (matches > 0) {	
+		    punter.returnBet();
+			punter.receiveWinnings(winnings);
+		}
+		else {
+		    punter.loseBet();
+		}
+		
 		//assert
-		assertEquals(punterBalance,punter.getBalance());	
+		assertEquals(punterBalance - punterBet,punter.getBalance());	
 	}
 
 }
