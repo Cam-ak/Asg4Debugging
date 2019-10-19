@@ -16,7 +16,7 @@ class PlayerCantReachBetLimitTest {
 	}
 
 	@Test
-	void test() {
+	void testPlayerCannotReachLimit() {
 		//arrange
 		String punterName = "John";
 		int punterStartingBalance = 100;

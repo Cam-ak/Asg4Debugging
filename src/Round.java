@@ -18,8 +18,7 @@ public class Round {
         
 		int matches = 0;
 		for (Die d : dice) {
-		    d.roll();
-			if (d.getFace().equals(pick)) { 
+			if (d.weightedRoll(pick).equals(pick)) { 
 				matches += 1;
 			}
 		}

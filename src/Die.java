@@ -18,6 +18,12 @@ public class Die {
 	public Face roll() {
 		return Face.getRandom();
 	}		
+	
+	
+	
+	public Face weightedRoll(Face pick) {
+		return Face.getWeightedResult(pick);
+	}	
 
 	
 	

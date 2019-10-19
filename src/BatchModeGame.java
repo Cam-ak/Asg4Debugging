@@ -59,6 +59,7 @@ public class BatchModeGame {
         
         
         int roundCount = 0;
+        int winCount = 0;
 
         while (roundCount != numberOfGames && punter.balanceExceedsLimitBy(stdBet)) {
             if (!useStandardPick) {
@@ -74,6 +75,7 @@ public class BatchModeGame {
                         dice.get(0).getFace(), dice.get(1).getFace(), dice.get(2).getFace()));
             
             if (winnings > 0) {
+            	winCount++;
                 System.out.println(String.format("\n%s won %d, balance now %d\n\n",
                         punter.getName(), winnings, punter.getBalance()));
             }
@@ -82,8 +84,10 @@ public class BatchModeGame {
                         punter.getName(), stdBet, punter.getBalance()));
             }
         }
+        
         System.out.println(String.format("Player leaves game with $%d after %d rounds, having started with $%d", 
                 punter.getBalance(), roundCount, initialBalance));
+        System.out.println(String.format("Total Games Played: %d \nWinning Games: %d\nWin Ratio: %f", roundCount, winCount, (float)winCount/(float)roundCount));
         
     }
 
